@@ -16,6 +16,7 @@
     "strictNullChecks": false,
     "paths": {
       "my-crate": ["./my-crate/pkg"],
+      "pdfium": ["./pdfium/pkg"],
       "~/*": ["./src/*"]
     }
   },

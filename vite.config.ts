@@ -8,6 +8,7 @@ export default defineConfig({
   },
   plugins: [
     vue(), 
-    wasmPack(['./my-crate']), 
+    wasmPack(['./my-crate']),
+    wasmPack(['./pdfium']) ,
   ]
 });

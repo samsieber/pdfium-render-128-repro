@@ -1,0 +1,36 @@
+diff --git a/ui/pdfium/pkg/pdfium.js b/ui/pdfium/pkg/original.js
+index 94f7926..d06d540 100644
+--- a/ui/pdfium/pkg/pdfium.js
++++ b/ui/pdfium/pkg/original.js
+@@ -1,4 +1,4 @@
+-export default (() => {
++var PDFiumModule = (() => {
+   var _scriptDir = typeof document !== 'undefined' && document.currentScript ? document.currentScript.src : undefined;
+   if (typeof __filename !== 'undefined') _scriptDir = _scriptDir || __filename;
+   return (
+@@ -415,7 +415,7 @@ export default (() => {
+         }
+       }
+       var wasmBinaryFile;
+-      wasmBinaryFile = "pdfium_bg.wasm";
++      wasmBinaryFile = "pdfium.wasm";
+       if (!isDataURI(wasmBinaryFile)) {
+         wasmBinaryFile = locateFile(wasmBinaryFile)
+       }
+@@ -462,7 +462,7 @@ export default (() => {
+ 
+       function instantiateAsync(binary, binaryFile, imports, callback) {
+         if (!binary && typeof WebAssembly.instantiateStreaming == "function" && !isDataURI(binaryFile) && !isFileURI(binaryFile) && !ENVIRONMENT_IS_NODE && typeof fetch == "function") {
+-          return fetch(new URL(binaryFile, import.meta.url), {
++          return fetch(binaryFile, {
+             credentials: "same-origin"
+           }).then(response => {
+             var result = WebAssembly.instantiateStreaming(response, imports);
+@@ -4820,3 +4820,7 @@ export default (() => {
+     }
+   );
+ })();;
++if (typeof exports === 'object' && typeof module === 'object')
++  module.exports = PDFiumModule;
++else if (typeof define === 'function' && define['amd'])
++  define([], () => PDFiumModule);

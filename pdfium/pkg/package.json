@@ -1,0 +1,13 @@
+{
+  "name": "pdfium",
+  "collaborators": [
+    "Sam Sieber"
+  ],
+  "version": "0.1.0",
+  "files": [
+    "pdfium.wasm",
+    "pdfium.js"
+  ],
+  "types": "pdfium.d.ts",
+  "module": "pdfium.js"
+}

@@ -1,4 +1,4 @@
-var PDFiumModule = (() => {
+export default (() => {
   var _scriptDir = typeof document !== 'undefined' && document.currentScript ? document.currentScript.src : undefined;
   if (typeof __filename !== 'undefined') _scriptDir = _scriptDir || __filename;
   return (
@@ -415,7 +415,7 @@ var PDFiumModule = (() => {
         }
       }
       var wasmBinaryFile;
-      wasmBinaryFile = "pdfium.wasm";
+      wasmBinaryFile = "pdfium_bg.wasm";
       if (!isDataURI(wasmBinaryFile)) {
         wasmBinaryFile = locateFile(wasmBinaryFile)
       }
@@ -433,7 +433,7 @@ var PDFiumModule = (() => {
       function getBinaryPromise(binaryFile) {
         if (!wasmBinary && (ENVIRONMENT_IS_WEB || ENVIRONMENT_IS_WORKER)) {
           if (typeof fetch == "function" && !isFileURI(binaryFile)) {
-            return fetch(new URL(binaryFile, import.meta.url), {
+            return fetch(binaryFile, {
               credentials: "same-origin"
             }).then(response => {
               if (!response["ok"]) {
@@ -4820,7 +4820,3 @@ var PDFiumModule = (() => {
     }
   );
 })();;
-if (typeof exports === 'object' && typeof module === 'object')
-  module.exports = PDFiumModule;
-else if (typeof define === 'function' && define['amd'])
-  define([], () => PDFiumModule);
